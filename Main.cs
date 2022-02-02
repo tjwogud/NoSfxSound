@@ -38,10 +38,10 @@ namespace NoSfxSound
             return true;
         }
 
-        private static string[] kr_texts1 = new string[] { "항상", "오토 시", "하지 않음" };
-        private static string[] en_texts1 = new string[] { "Always", "Only Auto", "Never" };
-        private static string[] kr_texts2 = new string[] { "항상", "하지 않음" };
-        private static string[] en_texts2 = new string[] { "Always", "Never" };
+        private static readonly string[] kr_texts1 = new string[] { "항상", "오토 시", "하지 않음" };
+        private static readonly string[] en_texts1 = new string[] { "Always", "Only Auto", "Never" };
+        private static readonly string[] kr_texts2 = new string[] { "항상", "하지 않음" };
+        private static readonly string[] en_texts2 = new string[] { "Always", "Never" };
 
         private static void OnGUI(UnityModManager.ModEntry modEntry)
         {
