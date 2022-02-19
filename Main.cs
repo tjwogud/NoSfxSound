@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using System;
 using System.Reflection;
 using UnityEngine;
 using UnityModManagerNet;
@@ -29,7 +30,11 @@ namespace NoSfxSound
             if (value)
             {
                 harmony = new Harmony(modEntry.Info.Id);
-                harmony.PatchAll(Assembly.GetExecutingAssembly());
+                MethodBase playSfx = typeof(scrSfx).GetMethod("PlaySfx");
+                MethodBase legacyPlaySfx = typeof(scrConductor).GetMethod("PlaySfx");
+                HarmonyMethod prefix = new HarmonyMethod(typeof(Patch.PlaySfxPatch), "Prefix");
+                HarmonyMethod legacyPrefix = new HarmonyMethod(typeof(Patch.PlaySfxPatch), "LegacyPrefix");
+                harmony.Patch(playSfx ?? legacyPlaySfx, prefix: playSfx != null ? prefix : legacyPrefix);
             }
             else
             {
